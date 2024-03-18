@@ -1,18 +1,20 @@
 import express from "express";
-const app = express();
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import errorMiddleware from "./middlewares/errors.js";
 import { connectDatabase } from "./config/dbconnect.js";
+
+const app = express();
 
 // Handle Uncaught exceptions
 process.on("uncaughtException", (err) => {
   console.log(`ERROR: ${err}`);
-  console.log("Shutting down due to uncaught expection");
+  console.log("Shutting down due to uncaught exception");
   process.exit(1);
 });
 
-if (process.env.NODE_ENV !== "PRODUCTION") {
+if (process.env.NODE_ENV !== "production") {
   dotenv.config({ path: "backend/config/config.env" });
 }
 
@@ -29,6 +31,17 @@ app.use(
 );
 app.use(cookieParser());
 
+// Define allowed origins as an array
+const allowedOrigins = ["http://localhost:3000", "https://example.com"];
+
+// Add CORS middleware to allow requests from specified origins
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true, // Enable passing cookies cross-origin
+  })
+);
+
 // Import all routes
 import productRoutes from "./routes/products.js";
 import authRoutes from "./routes/auth.js";
@@ -39,7 +52,6 @@ app.use("/api/v1", authRoutes);
 app.use("/api/v1", orderRoutes);
 app.use("/api/v1", paymentRoutes);
 
-
 // Using error middleware
 app.use(errorMiddleware);
 
@@ -49,7 +61,7 @@ const server = app.listen(process.env.PORT, () => {
   );
 });
 
-//Handle Unhandled Promise rejections
+// Handle Unhandled Promise rejections
 process.on("unhandledRejection", (err) => {
   console.log(`ERROR: ${err}`);
   console.log("Shutting down server due to Unhandled Promise Rejection");
