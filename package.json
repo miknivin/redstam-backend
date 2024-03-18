@@ -1,0 +1,27 @@
+{
+  "name": "ecom-backend",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev": "NODE_ENV=DEVELOPMENT nodemon index.js",
+    "prod": "NODE_ENV=PRODUCTION nodemon index.js",
+    "seeder": "node seeder/seeder.js"
+  },
+  "author": "Nivin",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.0",
+    "nodemailer": "^6.9.7",
+    "stripe": "^14.21.0"
+  }
+}
