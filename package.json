@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "dev": "NODE_ENV=DEVELOPMENT nodemon index.js",
     "prod": "NODE_ENV=PRODUCTION nodemon index.js",
     "seeder": "node seeder/seeder.js"
