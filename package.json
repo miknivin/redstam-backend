@@ -6,8 +6,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "NODE_ENV=DEVELOPMENT node index.js",
-    "prod": "NODE_ENV=PRODUCTION node index.js",
     "seeder": "node seeder/seeder.js"
   },
   "author": "Nivin",
