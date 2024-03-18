@@ -3,7 +3,7 @@ const app = express();
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import errorMiddleware from "./middlewares/errors.js";
-import { connectDatabase } from "./config/dbConnect.js";
+import { connectDatabase } from "./config/dbconnect.js";
 
 // Handle Uncaught exceptions
 process.on("uncaughtException", (err) => {
